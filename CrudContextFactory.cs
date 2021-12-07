@@ -1,12 +1,12 @@
 ﻿
-using AppSevenFunction;
+using App8Function;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AppSevenFunction
+namespace App8Function
 {
     public class CrudContextFactory : IDesignTimeDbContextFactory<UserContext>
     {
