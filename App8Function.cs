@@ -17,7 +17,12 @@ namespace App8Function
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "app/{name}")] HttpRequest req,
             ILogger log,string name)
         {
-            return new OkObjectResult(name);
+            User user = new User();
+            UserContext userContext = new UserContext();
+            user.UserName = name;
+            userContext.Add(user);
+            userContext.SaveChanges();
+            return new OkObjectResult(user);
         }
     }
 }
