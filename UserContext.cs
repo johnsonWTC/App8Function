@@ -15,7 +15,8 @@ namespace App8Function
         public DbSet<User> Users { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=ASSET-10422\\SQLEXPRESS;Initial Catalog=AppSevenFuction;Integrated Security=True");
+            optionsBuilder.UseSqlServer("Data Source=ASSET-10422\\SQLEXPRESS;Initial Catalog=App8Fuction;Integrated Security=True");
+            // $env:SqlConnectionString="Data Source=ASSET-10422\SQLEXPRESS;Initial Catalog=App8Fuction;Integrated Security=True"
         }
     }
 }

@@ -14,7 +14,7 @@ namespace App8Function
     {
         [FunctionName("NameSaver")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "{app/name}")] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "app/{name}")] HttpRequest req,
             ILogger log,string name)
         {
             return new OkObjectResult(name);
