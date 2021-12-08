@@ -29,18 +29,16 @@ namespace App8Function
 
             if (HttpRequests.ContainsKey("Custom"))
             {
-                 key = HttpRequests.Where(x => x.Key == "Custom").;
+                 key = HttpRequests.Where(x => x.Key == "Custom").FirstOrDefault().Value;
             }
             var emails = claimsPrincipal.Claims.FirstOrDefault(c => c.Type == "keyid");
             var emailClaim = claimsPrincipal.Claims.FirstOrDefault(c => c.Type == "emails");
-
 
             string claims = "";
             foreach (var claim in claimsPrincipal.Claims)
             {
                 claims = claim.Type + "   " + claim.Value + "          " + claims + "    " + key;
             }
-
             //var email = new ReturnValue();
             //if (emailClaim is null)
             //{
