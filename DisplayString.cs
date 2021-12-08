@@ -31,9 +31,6 @@ namespace App8Function
             {
                  key = HttpRequests.Where(x => x.Key == "apikey").ToString();
             }
-
-
-
             var emails = claimsPrincipal.Claims.FirstOrDefault(c => c.Type == "keyid");
             var emailClaim = claimsPrincipal.Claims.FirstOrDefault(c => c.Type == "emails");
 
