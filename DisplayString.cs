@@ -9,26 +9,49 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Security.Claims;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace App8Function
 {
     public static class DisplayString
     {
+        [Authorize]
         [FunctionName("DisplayString")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "App8Function/{name}")] HttpRequest req,
             ILogger log, ClaimsPrincipal claimsPrincipal)
         {
-            var emails = claimsPrincipal.Claims.FirstOrDefault(c => c.Type == "scp");
-            var emailClaim = claimsPrincipal.Claims.FirstOrDefault(c => c.Type == "emails");
-            var email = new ReturnValue();
-            if (emails is null)
+
+
+            var HttpRequests = req.Headers;
+            var key = "";
+
+
+            if (HttpRequests.ContainsKey("Custom"))
             {
-                email.Email = "no email found none";
+                 key = HttpRequests.Where(x => x.Key == "apikey").ToString();
             }
-            else
-                email.Email = emails.Value;
-            return new OkObjectResult(email);
+
+
+
+            var emails = claimsPrincipal.Claims.FirstOrDefault(c => c.Type == "keyid");
+            var emailClaim = claimsPrincipal.Claims.FirstOrDefault(c => c.Type == "emails");
+
+
+            string claims = "";
+            foreach (var claim in claimsPrincipal.Claims)
+            {
+                claims = claim.Type + "   " + claim.Value + "          " + claims;
+            }
+
+            //var email = new ReturnValue();
+            //if (emailClaim is null)
+            //{
+            //    email.Email = "no email found none, claim";
+            //}
+            //else
+            //    email.Email = emails.Value;
+            return new OkObjectResult(claims);
         }
     }
 
