@@ -35,10 +35,10 @@ namespace App8Function
             var emailClaim = claimsPrincipal.Claims.FirstOrDefault(c => c.Type == "emails");
 
             string claims = "";
-            foreach (var claim in claimsPrincipal.Claims)
-            {
-                claims = claim.Type + "   " + claim.Value + "          " + claims + "    " + key;
-            }
+            //foreach (var claim in claimsPrincipal.Claims)
+            //{
+            //    claims = claim.Type + "   " + claim.Value + "          " + claims + "    " + key + " key";
+            //}
             //var email = new ReturnValue();
             //if (emailClaim is null)
             //{
@@ -46,7 +46,7 @@ namespace App8Function
             //}
             //else
             //    email.Email = emails.Value;
-            return new OkObjectResult(claims);
+            return new OkObjectResult(key);
         }
     }
 
