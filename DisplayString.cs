@@ -31,8 +31,8 @@ namespace App8Function
             {
                  key = HttpRequests.Where(x => x.Key == "Custom").FirstOrDefault().Value;
             }
-            var emails = claimsPrincipal.Claims.FirstOrDefault(c => c.Type == "keyid");
-            var emailClaim = claimsPrincipal.Claims.FirstOrDefault(c => c.Type == "emails");
+            //var emails = claimsPrincipal.Claims.FirstOrDefault(c => c.Type == "keyid");
+            //var emailClaim = claimsPrincipal.Claims.FirstOrDefault(c => c.Type == "emails");
 
             string claims = "";
             //foreach (var claim in claimsPrincipal.Claims)
