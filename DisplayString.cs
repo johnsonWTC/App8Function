@@ -29,7 +29,7 @@ namespace App8Function
 
             if (HttpRequests.ContainsKey("Custom"))
             {
-                 key = HttpRequests.Where(x => x.Key == "Custom").ToString();
+                 key = HttpRequests.Where(x => x.Key == "Custom").;
             }
             var emails = claimsPrincipal.Claims.FirstOrDefault(c => c.Type == "keyid");
             var emailClaim = claimsPrincipal.Claims.FirstOrDefault(c => c.Type == "emails");
