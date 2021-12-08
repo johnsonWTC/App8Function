@@ -7,6 +7,8 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System.Security.Claims;
+using System.Linq;
 
 namespace App8Function
 {
@@ -14,10 +16,24 @@ namespace App8Function
     {
         [FunctionName("DisplayString")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "DisplayString/{name}")] HttpRequest req,string name,
-            ILogger log)
+            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
+            ILogger log, ClaimsPrincipal claimsPrincipal)
         {
-            return new OkObjectResult(name);
+            var emails = claimsPrincipal.Claims.FirstOrDefault(c => c.Type == "scp");
+            var emailClaim = claimsPrincipal.Claims.FirstOrDefault(c => c.Type == "emails");
+            var email = new ReturnValue();
+            if (emails is null)
+            {
+                email.Email = "no email found none";
+            }
+            else
+                email.Email = emails.Value;
+            return new OkObjectResult(email);
         }
+    }
+
+    public class ReturnValue
+    {
+        public string Email { get; set; }
     }
 }
