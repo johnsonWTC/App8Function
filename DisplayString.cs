@@ -60,7 +60,7 @@ namespace App8Function
             //}
             //else
             //    email.Email = emails.Value;
-            return new OkObjectResult(jwtSecurityToken);
+            return new OkObjectResult(email);
         }
     }
 
